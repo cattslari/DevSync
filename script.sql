@@ -1,3 +1,4 @@
+
 CREATE TABLE tb_usuario_devsync(
   cod_usuario SERIAL PRIMARY KEY,
   login VARCHAR(200) NOT NULL,
