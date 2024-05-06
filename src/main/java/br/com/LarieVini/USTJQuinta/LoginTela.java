@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author rodrigo
+ * @author vinin
  */
 public class LoginTela extends javax.swing.JFrame {
 
@@ -70,6 +70,11 @@ public class LoginTela extends javax.swing.JFrame {
 
         criarContaButton.setBackground(new java.awt.Color(153, 204, 255));
         criarContaButton.setText("Criar conta");
+        criarContaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criarContaButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setForeground(new java.awt.Color(102, 51, 255));
@@ -128,16 +133,39 @@ public class LoginTela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-       
+       try{
+            String login = loginTextField.getText();
+            String senha = new String(senhaPasswordField.getPassword());
+            var usuario = new Usuarios(login, senha);
+            var dao = new UsuariosDAO();
+            if(dao.existe(usuario)){
+                JOptionPane.showMessageDialog(null, "Bem vindo");
+                EventosTela eventosTela = new EventosTela();
+                eventosTela.setVisible(true);
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Par usuário/senha inválido");
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Tente novamente mais tarde");
+        }
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
-        
+        dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
     private void loginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loginTextFieldActionPerformed
+
+    private void criarContaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarContaButtonActionPerformed
+        CadastroUsuarioTela cadastroUsuarioTela = new CadastroUsuarioTela();
+        cadastroUsuarioTela.setVisible(true);
+    }//GEN-LAST:event_criarContaButtonActionPerformed
 
     /**
      * @param args the command line arguments
