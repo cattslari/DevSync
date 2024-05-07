@@ -16,7 +16,7 @@ public class ConnectionFactory {
     String user = "avnadmin";
     String password = "AVNS_vBWereQAaPLDhpn1Etx";
     String database = "defaultdb";
-   
+
     //4 partes: tipo de retorno, nome, lista de parâmetros e corpo
     Connection conectar() throws Exception{
         Class.forName("com.mysql.cj.jdbc.Driver");
