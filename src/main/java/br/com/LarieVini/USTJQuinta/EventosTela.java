@@ -15,6 +15,7 @@ public class EventosTela extends javax.swing.JFrame {
      */
     public EventosTela() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

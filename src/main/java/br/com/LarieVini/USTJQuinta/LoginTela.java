@@ -139,10 +139,17 @@ public class LoginTela extends javax.swing.JFrame {
             var usuario = new Usuarios(login, senha);
             var dao = new UsuariosDAO();
             if(dao.existe(usuario)){
+                if("admin".equals(login)) {
+                    JOptionPane.showMessageDialog(null, "Bem-vindo, Admin!");
+                    // Abrir a tela correspondente para o admin
+                    // Substitua "EventosTela" pelo nome da sua tela para o admin
+                    CadastroEventosTela cadastrosEventosTela = new CadastroEventosTela();
+                    cadastrosEventosTela.setVisible(true);
+                } else {
                 JOptionPane.showMessageDialog(null, "Bem vindo");
                 EventosTela eventosTela = new EventosTela();
                 eventosTela.setVisible(true);
-                
+                } 
             }
             else{
                 JOptionPane.showMessageDialog(null, "Par usuário/senha inválido");
