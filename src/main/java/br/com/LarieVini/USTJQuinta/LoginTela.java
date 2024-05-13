@@ -34,7 +34,6 @@ public class LoginTela extends javax.swing.JFrame {
         senhaPasswordField = new javax.swing.JPasswordField();
         cancelarButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
-        criarContaButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -68,14 +67,6 @@ public class LoginTela extends javax.swing.JFrame {
             }
         });
 
-        criarContaButton.setBackground(new java.awt.Color(153, 204, 255));
-        criarContaButton.setText("Criar conta");
-        criarContaButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                criarContaButtonActionPerformed(evt);
-            }
-        });
-
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setForeground(new java.awt.Color(102, 51, 255));
         jLabel1.setText("Seja Bem vindo");
@@ -97,8 +88,7 @@ public class LoginTela extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(loginTextField)
-                            .addComponent(senhaPasswordField)
-                            .addComponent(criarContaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(senhaPasswordField)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(262, 262, 262)
                         .addComponent(jLabel1))
@@ -122,9 +112,7 @@ public class LoginTela extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(criarContaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         loginTextField.getAccessibleContext().setAccessibleName("Digite seu Login:");
@@ -139,6 +127,11 @@ public class LoginTela extends javax.swing.JFrame {
             var usuario = new Usuarios(login, senha);
             var dao = new UsuariosDAO();
             if(dao.existe(usuario)){
+                int resposta = JOptionPane.showConfirmDialog(this,"Deseja cadastrar uma nova conta?","Confirmacao", JOptionPane.YES_NO_OPTION);
+                if (resposta == JOptionPane.YES_OPTION){
+                    CadastroUsuarioTela cadastroUsuarioTela = new CadastroUsuarioTela();
+                    cadastroUsuarioTela.setVisible(true);
+                }else{
                 if("admin".equals(login)) {
                     JOptionPane.showMessageDialog(null, "Bem-vindo, Admin!");
                     // Abrir a tela correspondente para o admin
@@ -150,6 +143,7 @@ public class LoginTela extends javax.swing.JFrame {
                 EventosTela eventosTela = new EventosTela();
                 eventosTela.setVisible(true);
                 } 
+              }
             }
             else{
                 JOptionPane.showMessageDialog(null, "Par usuário/senha inválido");
@@ -168,11 +162,6 @@ public class LoginTela extends javax.swing.JFrame {
     private void loginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loginTextFieldActionPerformed
-
-    private void criarContaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarContaButtonActionPerformed
-        CadastroUsuarioTela cadastroUsuarioTela = new CadastroUsuarioTela();
-        cadastroUsuarioTela.setVisible(true);
-    }//GEN-LAST:event_criarContaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,7 +200,6 @@ public class LoginTela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarButton;
-    private javax.swing.JButton criarContaButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField loginTextField;
